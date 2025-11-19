@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'flask-app', '.' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'tag', 'flask-app', 'flask-app:latest' ]
+
+images:
+  - 'flask-app:latest'

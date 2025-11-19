@@ -1,0 +1,19 @@
+name: CI Build (Google Cloud Build Style)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build Docker image using Google Cloud Build format
+        run: |
+          echo "Simulating Google Cloud Build using cloudbuild.yaml"
+          docker build -t flask-app .
+          docker images
