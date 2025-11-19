@@ -10,30 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Descargar el código del repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2) Preparar Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      # 3) Instalar dependencias
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # 4) Ejecución de prueba mínima (CI real)
       - name: Run basic test
         run: python -c "print('CI CHECK OK - Python & Flask installed')"
 
-      # 5) Simulación de Google Cloud Build usando tu cloudbuild.yaml
       - name: Simulating Google Cloud Build
         run: |
           echo "Simulating Google Cloud Build using cloudbuild.yaml"
           docker build -t flask-app .
-
-      # 6) Mostrar el log gigante EXACTO como cuando usas Docker localmente
-      - name: Mostrar imágenes Docker
-        run: docker images
+          docker images
