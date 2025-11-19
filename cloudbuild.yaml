@@ -22,7 +22,7 @@ images:
   - 'us-central1-docker.pkg.dev/PROJECT-ID/flask-repo/flask-app'
 
 # Deploy a Cloud Run
-# (No se ejecuta si no tienes tarjeta, pero demuestra que sabes hacerlo)
+# (No se ejecuta pero demuestra que sabes hacerlo)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:

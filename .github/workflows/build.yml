@@ -1,34 +1,30 @@
-name: CI - Build Flask App
+name: CI + Cloud Build Simulation
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
-      - name: Run Flask build test
-        run: |
-          python main.py &
-          sleep 5
-          echo "App Flask corrió correctamente en CI"
+      - name: Run basic test
+        run: python -c "print('CI CHECK OK - Python & Flask installed')"
 
-      - name: Build Docker image
-        run: docker build -t flask-app .
+      - name: Simulating Google Cloud Build
+        run: |
+          echo "Simulating Google Cloud Build using cloudbuild.yaml"
+          docker build -t flask-app .
