@@ -28,3 +28,6 @@ jobs:
         run: |
           echo "Simulating Google Cloud Build using cloudbuild.yaml"
           docker build -t flask-app .
+          
+      - name: Mostrar imágenes Docker
+        run: docker images
