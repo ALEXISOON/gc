@@ -1,7 +1,9 @@
-name: CI Build (Google Cloud Build Style)
+name: CI - Build Flask App
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -9,11 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Build Docker image using Google Cloud Build format
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
         run: |
-          echo "Simulating Google Cloud Build using cloudbuild.yaml"
-          docker build -t flask-app .
-          docker images
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Flask build test
+        run: |
+          python main.py &
+          sleep 5
+          echo "App Flask corrió correctamente en CI"
+
+      - name: Build Docker image
+        run: docker build -t flask-app .
